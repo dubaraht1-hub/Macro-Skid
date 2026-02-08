@@ -26,35 +26,12 @@ public final class ModuleManager implements ButtonListener {
 
 	public void addModules() {
 		//Combat
-		add(new AimAssist());
-		add(new AnchorMacro());
-		add(new AutoCrystal());
-		add(new AutoDoubleHand());
-		add(new AutoHitCrystal());
-		add(new AutoInventoryTotem());
-		add(new TriggerBot());
-		add(new AutoPot());
 		add(new AutoPotRefill());
-		add(new AutoWTap());
-		add(new CrystalOptimizer());
-		add(new DoubleAnchor());
-		add(new HoverTotem());
-		add(new NoMissDelay());
-		add(new ShieldDisabler());
-		add(new TotemOffhand());
+		add(new ShieldDisabler())
 		add(new AutoJumpReset());
 
 		//Misc
-		add(new Prevent());
 		add(new AutoXP());
-		add(new NoJumpDelay());
-		add(new PingSpoof());
-		add(new FakeLag());
-		add(new AutoClicker());
-		add(new KeyPearl());
-		add(new NoBreakDelay());
-		add(new Freecam());
-		add(new PackSpoof());
 		add(new Sprint());
 
 		//Render
