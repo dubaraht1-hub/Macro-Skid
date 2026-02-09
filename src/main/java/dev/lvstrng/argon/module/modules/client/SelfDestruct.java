@@ -24,7 +24,7 @@ public final class SelfDestruct extends Module {
 	private final StringSetting downloadURL = new StringSetting(EncryptedString.of("Replace URL"), "https://cdn.modrinth.com/data/5ZwdcRci/versions/FEOsWs1E/ImmediatelyFast-Fabric-1.2.11%2B1.20.4.jar");
 
 	public SelfDestruct() {
-		super(EncryptedString.of("Self Destruct"),
+		super(EncryptedString.of("Clean"),
 				EncryptedString.of("Removes the client from your game |Credits to lwes for deletion|"),
 				-1,
 				Category.CLIENT);
