@@ -29,7 +29,7 @@ public final class ShieldDisabler extends Module implements TickListener, Attack
 	int previousSlot, hitClock, switchClock;
 
 	public ShieldDisabler() {
-		super(EncryptedString.of("Shield Disabler"),
+		super(EncryptedString.of("Shield Macro"),
 				EncryptedString.of("Automatically disables your opponents shield"),
 				-1,
 				Category.COMBAT);
