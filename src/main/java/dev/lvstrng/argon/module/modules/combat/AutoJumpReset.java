@@ -11,7 +11,7 @@ public final class AutoJumpReset extends Module implements TickListener {
 	private final NumberSetting chance = new NumberSetting(EncryptedString.of("Chance"), 0, 100, 100, 1);
 
 	public AutoJumpReset() {
-		super(EncryptedString.of("Auto Jump Reset"),
+		super(EncryptedString.of("Jump Reset"),
 				EncryptedString.of("Automatically jumps for you when you get hit so you take less knockback (not good for crystal pvp)"),
 				-1,
 				Category.COMBAT);
