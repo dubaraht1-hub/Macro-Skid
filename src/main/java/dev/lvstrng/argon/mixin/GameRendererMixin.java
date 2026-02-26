@@ -14,20 +14,18 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin {
-	@Shadow public abstract Matrix4f getBasicProjectionMatrix(double fov);
+    @Shadow public abstract Matrix4f getBasicProjectionMatrix(double fov);
+    @Shadow protected abstract double getFov(Camera camera, float tickDelta, boolean changingFov);
+    @Shadow @Final private Camera camera;
 
-	@Shadow protected abstract double getFov(Camera camera, float tickDelta, boolean changingFov);
-
-	@Shadow @Final private Camera camera;
-
-	@Inject(method = "renderWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiler/Profiler;swap(Ljava/lang/String;)V", ordinal = 1))
-	private void onWorldRender(RenderTickCounter tickCounter, CallbackInfo ci) {
-		double d = getFov(camera, tickCounter.getTickDelta(true), true);
-		Matrix4f matrix4f = getBasicProjectionMatrix(d);
-		MatrixStack matrixStack = new MatrixStack();
-		EventManager.fire(new GameRenderListener.GameRenderEvent(matrixStack, tickCounter.getTickDelta(true)));
-	}
+    @Inject(method = "renderWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiler/Profiler;push(Ljava/lang/String;)V"))
+    private void onWorldRender(RenderTickCounter tickCounter, CallbackInfo ci) {
+        double d = getFov(camera, tickCounter.getTickDelta(true), true);
+        Matrix4f matrix4f = getBasicProjectionMatrix(d);
+        MatrixStack matrixStack = new MatrixStack();
+        EventManager.fire(new GameRenderListener.GameRenderEvent(matrixStack, tickCounter.getTickDelta(true)));
+    }
+}
