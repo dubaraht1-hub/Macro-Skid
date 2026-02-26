@@ -63,9 +63,6 @@ public final class WorldUtils {
 		for (PlayerEntity player : mc.world.getPlayers()) {
 			float distance = (float) distance(toPlayer.getPos(), player.getPos());
 
-			if(excludeFriends && Argon.INSTANCE.getModuleManager().getModule(Friends.class).disableAimAssist.getValue() && Argon.INSTANCE.getFriendManager().isFriend(player))
-				continue;
-
 			if (player != toPlayer && distance <= range && player.canSee(toPlayer) == seeOnly) {
 				if (distance < minRange) {
 					minRange = distance;
@@ -122,96 +119,5 @@ public final class WorldUtils {
 
 		if (entityHitResult != null) {
 			Vec3d vec3d4 = entityHitResult.getPos();
-			double g = cameraPosVec.squaredDistanceTo(vec3d4);
+			double g = cameraPosVec.squaredDistance
 
-			if ((distance > distance && g > Math.pow(distance, 2)) || (g < e || result == null)) {
-				result = g > Math.pow(distance, 2)
-						? BlockHitResult.createMissed(vec3d4, Direction.getFacing(rotationVec.x, rotationVec.y, rotationVec.z), BlockPos.ofFloored(vec3d4))
-						: entityHitResult;
-			}
-		}
-
-		return result;
-	}
-
-
-	public static void placeBlock(BlockHitResult blockHit, boolean swingHand) {
-		ActionResult result = mc.interactionManager.interactBlock(mc.player, Hand.MAIN_HAND, blockHit);
-		if (result.isAccepted() && result.shouldSwingHand() && swingHand) mc.player.swingHand(Hand.MAIN_HAND);
-	}
-
-	public static Stream<WorldChunk> getLoadedChunks() {
-		int radius = Math.max(2, mc.options.getClampedViewDistance()) + 3;
-		int diameter = radius * 2 + 1;
-
-		ChunkPos center = mc.player.getChunkPos();
-		ChunkPos min = new ChunkPos(center.x - radius, center.z - radius);
-		ChunkPos max = new ChunkPos(center.x + radius, center.z + radius);
-
-		return Stream.iterate(min, pos -> {
-					int x = pos.x;
-					int z = pos.z;
-					x++;
-					if (x > max.x) {
-						x = min.x;
-						z++;
-					}
-					if (z > max.z)
-						throw new IllegalStateException("Stream limit didn't work.");
-
-					return new ChunkPos(x, z);
-
-				}).limit((long) diameter * diameter)
-				.filter(c -> mc.world.isChunkLoaded(c.x, c.z))
-				.map(c -> mc.world.getChunk(c.x, c.z)).filter(Objects::nonNull);
-	}
-
-    /*
-                NORTH
-
-        WEST      +      EAST
-
-                SOUTH
-     */
-
-	public static boolean isShieldFacingAway(PlayerEntity player) {
-		if (mc.player != null && player != null) {
-			Vec3d playerPos = mc.player.getPos();
-			Vec3d targetPos = player.getPos();
-
-			Vec3d directionToPlayer = playerPos.subtract(targetPos).normalize();
-
-			float yaw = player.getYaw();
-			float pitch = player.getPitch();
-			Vec3d facingDirection = new Vec3d(
-					-Math.sin(Math.toRadians(yaw)) * Math.cos(Math.toRadians(pitch)),
-					-Math.sin(Math.toRadians(pitch)),
-					Math.cos(Math.toRadians(yaw)) * Math.cos(Math.toRadians(pitch))
-			).normalize();
-
-			double dotProduct = facingDirection.dotProduct(directionToPlayer);
-
-			return dotProduct < 0;
-		}
-		return false;
-	}
-
-	public static boolean isTool(ItemStack itemStack) {
-		if (!(itemStack.getItem() instanceof ToolItem)) {
-			return false;
-		}
-		ToolMaterial material = ((ToolItem) itemStack.getItem()).getMaterial();
-		return material == ToolMaterials.DIAMOND || material == ToolMaterials.NETHERITE;
-	}
-
-	public static boolean isCrit(PlayerEntity player, Entity target) {
-		return player.getAttackCooldownProgress(0.5F) > 0.9F && player.fallDistance > 0.0F && !player.isOnGround() && !player.isClimbing() && !player.isSubmergedInWater() && !player.hasStatusEffect(StatusEffects.BLINDNESS) && target instanceof LivingEntity;
-	}
-
-	public static void hitEntity(Entity entity, boolean swingHand) {
-		mc.interactionManager.attackEntity(mc.player, entity);
-
-		if (swingHand)
-			mc.player.swingHand(Hand.MAIN_HAND);
-	}
-}
