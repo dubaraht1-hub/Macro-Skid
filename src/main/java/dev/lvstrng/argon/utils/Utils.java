@@ -1,7 +1,6 @@
 package dev.lvstrng.argon.utils;
 
 import dev.lvstrng.argon.module.modules.client.ClickGUI;
-import dev.lvstrng.argon.module.modules.client.SelfDestruct;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.entity.Entity;
 
