@@ -31,8 +31,3 @@ public abstract class GameRendererMixin {
 		MatrixStack matrixStack = new MatrixStack();
 		EventManager.fire(new GameRenderListener.GameRenderEvent(matrixStack, tickCounter.getTickDelta(true)));
 	}
-
-	@Inject(method = "shouldRenderBlockOutline", at = @At("HEAD"), cancellable = true)
-	private void onShouldRenderBlockOutline(CallbackInfoReturnable<Boolean> cir) {
-	}
-}
