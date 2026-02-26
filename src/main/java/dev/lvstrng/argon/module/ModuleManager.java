@@ -26,6 +26,15 @@ public final class ModuleManager implements ButtonListener {
         return modules;
     }
 
+    public <T extends Module> T getModule(Class<T> clazz) {
+        for (Module module : modules) {
+            if (module.getClass() == clazz) {
+                return (T) module;
+            }
+        }
+        return null;
+    }
+
     public List<Module> getModulesInCategory(Category category) {
         List<Module> categoryModules = new ArrayList<>();
         for (Module module : modules) {
@@ -34,5 +43,10 @@ public final class ModuleManager implements ButtonListener {
             }
         }
         return categoryModules;
+    }
+
+    @Override
+    public void onButtonPress(ButtonEvent event) {
+        // Required to fix the "is not abstract" error
     }
 }
