@@ -6,7 +6,6 @@ import dev.lvstrng.argon.event.events.ButtonListener;
 import dev.lvstrng.argon.event.events.MouseMoveListener;
 import dev.lvstrng.argon.event.events.MouseUpdateListener;
 import dev.lvstrng.argon.module.Module;
-import dev.lvstrng.argon.module.modules.client.SelfDestruct;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.Mouse;
 import org.lwjgl.glfw.GLFW;
