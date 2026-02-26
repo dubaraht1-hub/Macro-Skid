@@ -119,5 +119,8 @@ public final class WorldUtils {
 
 		if (entityHitResult != null) {
 			Vec3d vec3d4 = entityHitResult.getPos();
-			double g = cameraPosVec.squaredDistance
+			double g = cameraPosVec.squaredDistanceTo(vec3d4);
 
+			if ((distance > distance && g > Math.pow(distance, 2)) || (g < e || result == null)) {
+				result = g > Math.pow(distance, 2)
+						? BlockHitResult.createMissed(vec3d4, Direction.
