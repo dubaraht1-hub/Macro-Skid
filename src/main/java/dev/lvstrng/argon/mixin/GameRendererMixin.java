@@ -3,7 +3,6 @@ package dev.lvstrng.argon.mixin;
 import dev.lvstrng.argon.Argon;
 import dev.lvstrng.argon.event.EventManager;
 import dev.lvstrng.argon.event.events.GameRenderListener;
-import dev.lvstrng.argon.module.modules.misc.Freecam;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.RenderTickCounter;
