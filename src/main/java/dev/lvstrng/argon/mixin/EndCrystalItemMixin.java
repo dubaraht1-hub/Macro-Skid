@@ -1,7 +1,6 @@
 package dev.lvstrng.argon.mixin;
 
 import dev.lvstrng.argon.Argon;
-import dev.lvstrng.argon.module.modules.render.NoBounce;
 import dev.lvstrng.argon.utils.CrystalUtils;
 import dev.lvstrng.argon.utils.RenderUtils;
 import net.minecraft.block.Block;
