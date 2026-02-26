@@ -16,12 +16,7 @@ public class ItemStackMixin {
 	@Inject(method = "getBobbingAnimationTime", at = @At("HEAD"), cancellable = true)
 	private void removeBounceAnimation(CallbackInfoReturnable<Integer> cir) {
 		if (mc.player == null) return;
-
-		NoBounce noBounce = Argon.INSTANCE.getModuleManager().getModule(NoBounce.class);
-		if (Argon.INSTANCE != null && mc.player != null && noBounce.isEnabled()) {
-			ItemStack mainHandStack = mc.player.getMainHandStack();
-			if (mainHandStack.isOf(Items.END_CRYSTAL)) {
-				cir.setReturnValue(0);
+		
 			}
 		}
 	}
