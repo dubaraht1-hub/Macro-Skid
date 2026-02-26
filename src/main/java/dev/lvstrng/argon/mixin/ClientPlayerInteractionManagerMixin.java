@@ -1,7 +1,6 @@
 package dev.lvstrng.argon.mixin;
 
 import dev.lvstrng.argon.Argon;
-import dev.lvstrng.argon.module.modules.misc.NoBreakDelay;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
