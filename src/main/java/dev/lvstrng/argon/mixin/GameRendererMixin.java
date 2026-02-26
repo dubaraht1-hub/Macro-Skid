@@ -34,7 +34,5 @@ public abstract class GameRendererMixin {
 
 	@Inject(method = "shouldRenderBlockOutline", at = @At("HEAD"), cancellable = true)
 	private void onShouldRenderBlockOutline(CallbackInfoReturnable<Boolean> cir) {
-		if (Argon.INSTANCE.getModuleManager().getModule(Freecam.class).isEnabled())
-			cir.setReturnValue(false);
 	}
 }
