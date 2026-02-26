@@ -1,7 +1,6 @@
 package dev.lvstrng.argon.utils;
 
 import dev.lvstrng.argon.Argon;
-import dev.lvstrng.argon.module.modules.client.Friends;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.Entity;
