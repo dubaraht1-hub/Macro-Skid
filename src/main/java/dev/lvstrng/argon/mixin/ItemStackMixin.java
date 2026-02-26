@@ -13,11 +13,4 @@ import static dev.lvstrng.argon.Argon.mc;
 @Mixin(ItemStack.class)
 public class ItemStackMixin {
 
-	@Inject(method = "getBobbingAnimationTime", at = @At("HEAD"), cancellable = true)
-	private void removeBounceAnimation(CallbackInfoReturnable<Integer> cir) {
-		if (mc.player == null) return;
-		
-			}
-		}
-	}
 }
