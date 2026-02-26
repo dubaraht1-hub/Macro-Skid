@@ -13,5 +13,4 @@ public class ClientPlayerInteractionManagerMixin {
 	@Shadow
 	private int blockBreakingCooldown;
 
-	}
 }
