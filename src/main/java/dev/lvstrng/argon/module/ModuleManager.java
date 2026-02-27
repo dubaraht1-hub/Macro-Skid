@@ -2,7 +2,6 @@ package dev.lvstrng.argon.module;
 
 import dev.lvstrng.argon.Argon;
 import dev.lvstrng.argon.event.events.ButtonListener;
-import dev.lvstrng.argon.event.events.ButtonEvent; // Added missing import
 import dev.lvstrng.argon.module.modules.client.ClickGUI;
 import dev.lvstrng.argon.module.modules.combat.*;
 import dev.lvstrng.argon.module.setting.KeybindSetting;
@@ -24,7 +23,8 @@ public final class ModuleManager implements ButtonListener {
 	public void addModules() {
 		//Combat
 		add(new AutoPotRefill());
-        add(new Aimassist()); // Ensure Aimassist is imported or in the combat package
+		add(new Aimassist());
+
 		//Client
 		add(new ClickGUI());
 
@@ -67,7 +67,7 @@ public final class ModuleManager implements ButtonListener {
 	}
 
     @Override
-    public void onButtonPress(ButtonEvent event) {
+    public void onButtonPress(ButtonListener event) {
         // Checks if the Pressed Key matches a module's keybind
         modules.forEach(module -> {
             if(module.getKey() == event.button && event.action == GLFW.GLFW_PRESS)
