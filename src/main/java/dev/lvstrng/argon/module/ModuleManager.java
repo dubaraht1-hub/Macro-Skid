@@ -13,64 +13,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ModuleManager implements ButtonListener {
-    private final List<Module> modules = new ArrayList<>();
+	private final List<Module> modules = new ArrayList<>();
 
-    public ModuleManager() {
-        addModules();
-        addKeybinds();
-    }
+	public ModuleManager() {
+		addModules();
+		addKeybinds();
+	}
 
-    public void addModules() {
-        //Combat
-        add(new AutoPotRefill());
-        add(new Aimassist()); // Ensure this class exists in dev.lvstrng.argon.module.modules.combat
+	public void addModules() {
+		//Combat
+		add(new AimAssist());
+		add(new AutoPotRefill());
+        
+		//Client
+		add(new ClickGUI());
+		add(new Friends());
+		add(new SelfDestruct());
+	}
 
-        //Client
-        add(new ClickGUI());
-    }
+	public List<Module> getEnabledModules() {
+		return modules.stream()
+				.filter(Module::isEnabled)
+				.toList();
+	}
 
-    public List<Module> getEnabledModules() {
-        return modules.stream()
-                .filter(Module::isEnabled)
-                .toList();
-    }
 
-    public List<Module> getModules() {
-        return modules;
-    }
+	public List<Module> getModules() {
+		return modules;
+	}
 
-    public void addKeybinds() {
-        Argon.INSTANCE.getEventManager().add(ButtonListener.class, this);
+	public void addKeybinds() {
+		Argon.INSTANCE.getEventManager().add(ButtonListener.class, this);
 
-        for (Module module : modules)
-            module.addSetting(new KeybindSetting(EncryptedString.of("Keybind"), module.getKey(), true).setDescription(EncryptedString.of("Key to enabled the module")));
-    }
+		for (Module module : modules)
+			module.addSetting(new KeybindSetting(EncryptedString.of("Keybind"), module.getKey(), true).setDescription(EncryptedString.of("Key to enabled the module")));
+	}
 
-    public List<Module> getModulesInCategory(Category category) {
-        return modules.stream()
-                .filter(module -> module.getCategory() == category)
-                .toList();
-    }
+	public List<Module> getModulesInCategory(Category category) {
+		return modules.stream()
+				.filter(module -> module.getCategory() == category)
+				.toList();
+	}
 
-    @SuppressWarnings("unchecked")
-    public <T extends Module> T getModule(Class<T> moduleClass) {
-        return (T) modules.stream()
-                .filter(moduleClass::isInstance)
-                .findFirst()
-                .orElse(null);
-    }
+	@SuppressWarnings("unchecked")
+	public <T extends Module> T getModule(Class<T> moduleClass) {
+		return (T) modules.stream()
+				.filter(moduleClass::isInstance)
+				.findFirst()
+				.orElse(null);
+	}
 
-    public void add(Module module) {
-        modules.add(module);
-    }
+	public void add(Module module) {
+		modules.add(module);
+	}
 
-    @Override
-    public void onButtonPress(ButtonListener event) {                
-        // Checks if the Pressed Key matches a module's keybind
-        modules.forEach(module -> {
-            // Using methods instead of fields
-            if(module.getKey() == event.getKey() && event.getAction() == GLFW.GLFW_PRESS)
-                module.toggle();
-        });
-    }
+	@Override
+	public void onButtonPress(ButtonEvent event) {
+		if(!SelfDestruct.destruct) {
+			modules.forEach(module -> {
+				if(module.getKey() == event.button && event.action == GLFW.GLFW_PRESS)
+					module.toggle();
+			});
+		}
+	}
 }
