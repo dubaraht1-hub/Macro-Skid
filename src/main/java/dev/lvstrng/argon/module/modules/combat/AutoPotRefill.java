@@ -36,7 +36,7 @@ public final class AutoPotRefill extends Module implements TickListener {
 	public void onEnable() {
 		eventManager.add(TickListener.class, this);
 
-		clock = 0;
+		clock = 1;
 		super.onEnable();
 	}
 
