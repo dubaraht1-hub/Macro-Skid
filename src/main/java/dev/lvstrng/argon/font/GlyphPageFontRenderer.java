@@ -449,20 +449,20 @@ public final class GlyphPageFontRenderer {
 	private void doDraw(float f, GlyphPage glyphPage) {
 		if (this.strikethroughStyle) {
 			BufferBuilder bufferBuilder = Tessellator.getInstance().begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION);
-			bufferBuilder.vertex(this.posX, this.posY + (float) (glyphPage.getMaxFontHeight() / 2), 0.0F);
-			bufferBuilder.vertex(this.posX + f, this.posY + (float) (glyphPage.getMaxFontHeight() / 2), 0.0F);
-			bufferBuilder.vertex(this.posX + f, this.posY + (float) (glyphPage.getMaxFontHeight() / 2) - 1.0F, 0.0F);
-			bufferBuilder.vertex(this.posX, this.posY + (float) (glyphPage.getMaxFontHeight() / 2) - 1.0F, 0.0F);
+			bufferBuilder.vertex(this.posX, this.posY + (float) (glyphPage.getMaxGlyphHeight() / 2), 0.0F);
+			bufferBuilder.vertex(this.posX + f, this.posY + (float) (glyphPage.getMaxGlyphHeight() / 2), 0.0F);
+			bufferBuilder.vertex(this.posX + f, this.posY + (float) (glyphPage.getMaxGlyphHeight() / 2) - 1.0F, 0.0F);
+			bufferBuilder.vertex(this.posX, this.posY + (float) (glyphPage.getMaxGlyphHeight() / 2) - 1.0F, 0.0F);
 			BufferRenderer.drawWithGlobalProgram(bufferBuilder.end());
 		}
 
 		if (this.underlineStyle) {
 			BufferBuilder bufferBuilder = Tessellator.getInstance().begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION);
 			int l = this.underlineStyle ? -1 : 0;
-			bufferBuilder.vertex(this.posX + (float) l, this.posY + (float) glyphPage.getMaxFontHeight(), 0.0F);
-			bufferBuilder.vertex(this.posX + f, this.posY + (float) glyphPage.getMaxFontHeight(), 0.0F);
-			bufferBuilder.vertex(this.posX + f, this.posY + (float) glyphPage.getMaxFontHeight() - 1.0F, 0.0F);
-			bufferBuilder.vertex(this.posX + (float) l, this.posY + (float) glyphPage.getMaxFontHeight() - 1.0F, 0.0F);
+			bufferBuilder.vertex(this.posX + (float) l, this.posY + (float) glyphPage.getMaxGlyphHeight(), 0.0F);
+			bufferBuilder.vertex(this.posX + f, this.posY + (float) glyphPage.getMaxGlyphHeight(), 0.0F);
+			bufferBuilder.vertex(this.posX + f, this.posY + (float) glyphPage.getMaxGlyphHeight() - 1.0F, 0.0F);
+			bufferBuilder.vertex(this.posX + (float) l, this.posY + (float) glyphPage.getMaxGlyphHeight() - 1.0F, 0.0F);
 			BufferRenderer.drawWithGlobalProgram(bufferBuilder.end());
 		}
 
@@ -492,7 +492,7 @@ public final class GlyphPageFontRenderer {
 	}
 
 	public int getFontHeight() {
-		return regularGlyphPage.getMaxFontHeight() / 2;
+		return regularGlyphPage.getMaxGlyphHeight() / 2;
 	}
 
 	public int getStringWidth(CharSequence text) {
@@ -510,7 +510,7 @@ public final class GlyphPageFontRenderer {
 		for (int i = 0; i < size; i++) {
 			char character = text.charAt(i);
 
-			if (character == '�')
+			if (character == '')
 				on = true;
 			else if (on && character >= '0' && character <= 'r') {
 				int colorIndex = "0123456789abcdefklmnor".indexOf(character);
@@ -566,7 +566,7 @@ public final class GlyphPageFontRenderer {
 		for (int i = j; i >= 0 && i < text.length() && i < maxWidth; i += k) {
 			char character = text.charAt(i);
 
-			if (character == '�')
+			if (character == '')
 				on = true;
 			else if (on && character >= '0' && character <= 'r') {
 				int colorIndex = "0123456789abcdefklmnor".indexOf(character);
