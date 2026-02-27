@@ -70,7 +70,8 @@ public final class ModuleManager implements ButtonListener {
     public void onButtonPress(ButtonListener event) {
         // Checks if the Pressed Key matches a module's keybind
         modules.forEach(module -> {
-            if(module.getKey() == event.button && event.action == GLFW.GLFW_PRESS)
+            // Update these method calls based on the actual methods in ButtonListener
+            if(module.getKey() == event.getKey() && event.getAction() == GLFW.GLFW_PRESS)
                 module.toggle();
         });
     }
