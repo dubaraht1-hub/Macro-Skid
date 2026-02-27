@@ -46,12 +46,14 @@ public final class ModuleManager implements ButtonListener {
 			module.addSetting(new KeybindSetting(EncryptedString.of("Keybind"), module.getKey(), true).setDescription(EncryptedString.of("Key to enabled the module")));
 	}
 
+	// This method filters modules for the GUI display
 	public List<Module> getModulesInCategory(Category category) {
 		return modules.stream()
 				.filter(module -> module.getCategory() == category)
 				.toList();
 	}
 
+	// This method fixes the "cannot find symbol" error in ClickGui.java
 	@SuppressWarnings("unchecked")
 	public <T extends Module> T getModule(Class<T> moduleClass) {
 		return (T) modules.stream()
@@ -66,6 +68,7 @@ public final class ModuleManager implements ButtonListener {
 
 	@Override
 	public void onButtonPress(ButtonEvent event) {
+		// Checks if the Pressed Key matches a module's keybind
 		if(!SelfDestruct.destruct) {
 			modules.forEach(module -> {
 				if(module.getKey() == event.button && event.action == GLFW.GLFW_PRESS)
