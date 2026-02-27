@@ -27,8 +27,6 @@ public final class ModuleManager implements ButtonListener {
         
 		//Client
 		add(new ClickGUI());
-		add(new Friends());
-		add(new SelfDestruct());
 	}
 
 	public List<Module> getEnabledModules() {
