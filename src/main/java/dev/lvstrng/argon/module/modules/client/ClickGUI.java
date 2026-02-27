@@ -42,9 +42,9 @@ public final class ClickGUI extends Module implements PacketReceiveListener {
 	}
 
 	public ClickGUI() {
-		super(EncryptedString.of("Macros"),
-				EncryptedString.of("Macro Client Made By Dubara"),
-				GLFW.GLFW_KEY_RIGHT_CONTROL,
+		super(EncryptedString.of("Argon"),
+				EncryptedString.of("Setting For Argon"),
+				GLFW.GLFW_KEY_RIGHT_SHIFT,
 				Category.CLIENT);
 
 		addSettings(red, green, blue, alphaWindow, breathing, rainbow, background, preventClose, roundQuads, animationMode, antiAliasing);
