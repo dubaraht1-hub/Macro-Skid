@@ -1,6 +1,7 @@
 package dev.lvstrng.argon.module;
 
 import dev.lvstrng.argon.event.events.ButtonListener;
+import dev.lvstrng.argon.event.events.ButtonEvent;
 import dev.lvstrng.argon.module.modules.combat.*;
 import dev.lvstrng.argon.module.modules.client.*;
 import java.util.ArrayList;
@@ -14,10 +15,10 @@ public final class ModuleManager implements ButtonListener {
     }
 
     public void addModules() {
-        //Client
+        // --- Client Modules ---
         add(new ClickGUI());
         
-        //Combat
+        // --- Combat Modules ---
         add(new AutoPotRefill());
     }
 
@@ -29,7 +30,6 @@ public final class ModuleManager implements ButtonListener {
         return modules;
     }
 
-    @SuppressWarnings("unchecked")
     public <T extends Module> T getModule(Class<T> clazz) {
         for (Module module : modules) {
             if (module.getClass() == clazz) {
