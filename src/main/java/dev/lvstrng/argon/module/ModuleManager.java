@@ -2,6 +2,7 @@ package dev.lvstrng.argon.module;
 
 import dev.lvstrng.argon.Argon;
 import dev.lvstrng.argon.event.events.ButtonListener;
+import dev.lvstrng.argon.event.events.ButtonEvent; // Added missing import
 import dev.lvstrng.argon.module.modules.client.ClickGUI;
 import dev.lvstrng.argon.module.modules.combat.*;
 import dev.lvstrng.argon.module.setting.KeybindSetting;
@@ -23,7 +24,7 @@ public final class ModuleManager implements ButtonListener {
 	public void addModules() {
 		//Combat
 		add(new AutoPotRefill());
-        add(new Aimassist());
+        add(new Aimassist()); // Ensure Aimassist is imported or in the combat package
 		//Client
 		add(new ClickGUI());
 
