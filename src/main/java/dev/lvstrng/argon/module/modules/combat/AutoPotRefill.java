@@ -25,7 +25,7 @@ public final class AutoPotRefill extends Module implements TickListener {
 	private int clock;
 
 	public AutoPotRefill() {
-		super(EncryptedString.of("RSHIFT BROKEN"),
+		super(EncryptedString.of("Apne Pot Refill Krle  "),
 				EncryptedString.of("Refills your hotbar with Only Healing potions"),
 				-1,
 				Category.COMBAT);
