@@ -67,8 +67,10 @@ public final class ModuleManager implements ButtonListener {
 
     @Override
     public void onButtonPress(ButtonEvent event) {
-        // Required to fix the "is not abstract" error
-			});
-		}
-	}
+        // Checks if the Pressed Key matches a module's keybind
+        modules.forEach(module -> {
+            if(module.getKey() == event.button && event.action == GLFW.GLFW_PRESS)
+                module.toggle();
+        });
+    }
 }
