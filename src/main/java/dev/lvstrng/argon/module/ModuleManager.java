@@ -23,7 +23,7 @@ public final class ModuleManager implements ButtonListener {
     public void addModules() {
         //Combat
         add(new AutoPotRefill());
-        add(new Aimassist());
+        add(new Aimassist()); // Ensure this class exists in dev.lvstrng.argon.module.modules.combat
 
         //Client
         add(new ClickGUI());
@@ -68,8 +68,8 @@ public final class ModuleManager implements ButtonListener {
     public void onButtonPress(ButtonListener event) {                
         // Checks if the Pressed Key matches a module's keybind
         modules.forEach(module -> {
-            // Using fields 'button' and 'action' instead of methods 'getKey()' and 'getAction()'
-            if(module.getKey() == event.button && event.action == GLFW.GLFW_PRESS)
+            // Using methods instead of fields
+            if(module.getKey() == event.getKey() && event.getAction() == GLFW.GLFW_PRESS)
                 module.toggle();
         });
     }
