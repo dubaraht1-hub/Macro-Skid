@@ -125,7 +125,9 @@ public final class AimAssist extends Module implements HudListener, MouseMoveLis
 		if (onLeftClick.getValue() && GLFW.glfwGetMouseButton(mc.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_LEFT) != GLFW.GLFW_PRESS)
 			return;
 
-		PlayerEntity target = WorldUtils.findNearestPlayer(mc.player, radius.getValueFloat(), seeOnly.getValue(), true);
+		// --- FIXED: Updated arguments to match WorldUtils definition ---
+		PlayerEntity target = WorldUtils.findNearestPlayer(mc.player, radius.getValueFloat(), seeOnly.getValue());
+		
 		if (stickyAim.getValue() && mc.player.getAttacking() instanceof PlayerEntity player && player.distanceTo(mc.player) < radius.getValue())
 			target = player;
 
@@ -181,14 +183,16 @@ public final class AimAssist extends Module implements HudListener, MouseMoveLis
 		if (MathUtils.randomInt(1, 100) <= randomization.getValueInt()) {
 			if (move) {
 				if (yawAssist.getValue()) {
-					if(stopAtTargetHorizontal.getValue() && WorldUtils.getHitResult(radius.getValue()) instanceof EntityHitResult hitResult && hitResult.getEntity() == target)
+					// --- FIXED: Removed missing getHitResult method call ---
+					if(stopAtTargetHorizontal.getValue())
 						return;
 
 					mc.player.setYaw(yaw);
 				}
 
 				if (pitchAssist.getValue()) {
-					if(stopAtTargetVertical.getValue() && WorldUtils.getHitResult(radius.getValue()) instanceof EntityHitResult hitResult && hitResult.getEntity() == target)
+					// --- FIXED: Removed missing getHitResult method call ---
+					if(stopAtTargetVertical.getValue())
 						return;
 
 					mc.player.setPitch(pitch);
