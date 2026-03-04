@@ -23,8 +23,8 @@ public final class ModuleManager implements ButtonListener {
 	public void addModules() {
 		//Combat
 		add(new AimAssist());
-		add(new AutoPotRefill());
 		add(new TriggerBot());
+		add(new AutoPotRefill());
      
 		//Client
 		add(new ClickGUI());
