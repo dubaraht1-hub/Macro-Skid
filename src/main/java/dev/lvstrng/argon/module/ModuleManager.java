@@ -3,7 +3,6 @@ package dev.lvstrng.argon.module;
 import dev.lvstrng.argon.Argon;
 import dev.lvstrng.argon.event.events.ButtonListener;
 import dev.lvstrng.argon.module.modules.client.ClickGUI;
-import dev.lvstrng.argon.module.modules.client.SystemClean;
 import dev.lvstrng.argon.module.modules.combat.*;
 import dev.lvstrng.argon.module.setting.KeybindSetting;
 import dev.lvstrng.argon.utils.EncryptedString;
@@ -28,7 +27,6 @@ public final class ModuleManager implements ButtonListener {
         
 		//Client
 		add(new ClickGUI());
-		add(new SystemClean());
 	}
 
 	public List<Module> getEnabledModules() {
