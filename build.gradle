@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // This downloads the ProGuard tool so the script can use it
+        // Required for Java 21 support
         classpath 'com.guardsquare:proguard-gradle:7.4.2'
     }
 }
@@ -13,8 +13,8 @@ plugins {
     id 'maven-publish'
 }
 
-// Import now works because the buildscript dependency is loaded
-import com.guardsquare.proguard.gradle.ProGuardTask
+// NOTE: DO NOT ADD THE IMPORT HERE. 
+// Using the full package name below fixes the "unable to resolve class" error.
 
 version = project.mod_version
 group = project.maven_group
@@ -67,15 +67,25 @@ java {
     withSourcesJar()
 }
 
-// Register the obfuscate task
-tasks.register('obfuscate', ProGuardTask) {
+// --- PROGUARD OBFUSCATION TASK ---
+// Registered using the full package path to avoid resolution errors
+tasks.register('obfuscate', com.guardsquare.proguard.gradle.ProGuardTask) {
     dependsOn jar
+    
+    // Input: The JAR Fabric Loom just built
     injars jar.archiveFile
+    
+    // Output: The final "Skid-look" JAR
     outjars "build/libs/${project.archives_base_name}-${project.version}-obfuscated.jar"
+
+    // Java 21 Library Jars
     libraryjars "${System.getProperty('java.home')}/jmods"
+
+    // Load rules from proguard.rules
     configuration 'proguard.rules'
 }
 
+// Ensure build finishes with obfuscation
 build.finalizedBy(obfuscate)
 
 jar {
