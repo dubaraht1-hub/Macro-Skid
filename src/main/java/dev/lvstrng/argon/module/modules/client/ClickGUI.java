@@ -24,7 +24,7 @@ public final class ClickGUI extends Module implements PacketReceiveListener {
 	public static final BooleanSetting breathing = new BooleanSetting(EncryptedString.of("Breathing"), true)
 			.setDescription(EncryptedString.of("Color breathing effect (only with rainbow off)"));
 	public static final BooleanSetting rainbow = new BooleanSetting(EncryptedString.of("Rainbow"), true)
-			.setDescription(EncryptedString.of("Enables LGBTQ mode"));
+			.setDescription(EncryptedString.of("Enables LGBTQT mode"));
 
 	public static final BooleanSetting background = new BooleanSetting(EncryptedString.of("Background"), false).setDescription(EncryptedString.of("Renders the background of the Click Gui"));
 	public static final BooleanSetting customFont = new BooleanSetting(EncryptedString.of("Custom Font"), true);
@@ -42,8 +42,8 @@ public final class ClickGUI extends Module implements PacketReceiveListener {
 	}
 
 	public ClickGUI() {
-		super(EncryptedString.of("Diddy Client"),
-				EncryptedString.of("Diddy Client Made By JENNY"),
+		super(EncryptedString.of("SyWare"),
+				EncryptedString.of("SyWare Official By JENNY "),
 				GLFW.GLFW_KEY_RIGHT_SHIFT,
 				Category.CLIENT);
 
