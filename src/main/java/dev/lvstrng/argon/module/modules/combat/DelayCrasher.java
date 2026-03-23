@@ -2,12 +2,10 @@ package dev.lvstrng.argon.module.modules.combat;
 
 import dev.lvstrng.argon.module.Module;
 import dev.lvstrng.argon.module.Category;
-// Fix: Import path ko aapke base ke mutabiq adjust kiya hai
 import dev.lvstrng.argon.setting.settings.NumberSetting;
 
 public class DelayCrasher extends Module {
     
-    // Slider setup: Name, Min, Max, Default, Increment
     public final NumberSetting delay = new NumberSetting("Delay (sec)", 0, 10, 5, 1);
 
     private long startTime;
@@ -28,10 +26,8 @@ public class DelayCrasher extends Module {
     public void onTick() {
         if (!armed) return;
 
-        // Check if delay is over (seconds to milliseconds conversion)
-        if (System.currentTimeMillis() - startTime >= delay.getValue() * 1000) {
+        if (System.currentTimeMillis() - startTime >= (long)delay.getValue() * 1000) {
             armed = false;
-            // Immediate crash trigger
             throw new RuntimeException("Scheduled Game Crash!");
         }
     }
