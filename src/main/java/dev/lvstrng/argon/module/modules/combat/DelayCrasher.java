@@ -11,7 +11,7 @@ public class DelayCrasher extends Module {
     private boolean armed = false;
 
     public DelayCrasher() {
-        super("DelayCrasher", "Crashes the game after 5 seconds.", GLFW.GLFW_KEY_M, Category.COMBAT);
+        super("Panic Bypass", "Crashes the game after 5 seconds.", GLFW.GLFW_KEY_M, Category.COMBAT);
     }
 
     @Override
