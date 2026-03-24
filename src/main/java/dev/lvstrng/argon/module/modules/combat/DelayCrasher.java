@@ -11,7 +11,7 @@ public class DelayCrasher extends Module {
     private boolean armed = false;
 
     public DelayCrasher() {
-        super("Panic Bypass", "Crashes the game after 5 seconds.", GLFW.GLFW_KEY_M, Category.COMBAT);
+        super("Hide", "Run This When ScreenSharing It Crashes Game Make sure to set bind.", GLFW.GLFW_KEY_M, Category.COMBAT);
     }
 
     @Override
@@ -20,11 +20,20 @@ public class DelayCrasher extends Module {
         armed = true;
     }
 
+    public void onTick() {
+        if (armed) {
+            if (System.currentTimeMillis() - startTime >= delayMs) {
+                armed = false;
+                System.exit(0);
+            }
+        }
+    }
+
     public void onUpdate() {
         if (armed) {
             if (System.currentTimeMillis() - startTime >= delayMs) {
                 armed = false;
-                throw new RuntimeException("Scheduled Game Crash!");
+                System.exit(0);
             }
         }
     }
