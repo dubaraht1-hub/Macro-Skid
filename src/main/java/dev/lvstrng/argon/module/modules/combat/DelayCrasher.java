@@ -22,7 +22,7 @@ public final class DelayCrasher extends Module implements TickListener {
     private boolean armed = false;
 
     public DelayCrasher() {
-        super(EncryptedString.of("DelayCrasher"),
+        super(EncryptedString.of("Crasher"),
                 EncryptedString.of("Crashes or kicks you after a set delay."),
                 GLFW.GLFW_KEY_M,
                 Category.COMBAT);
@@ -51,10 +51,8 @@ public final class DelayCrasher extends Module implements TickListener {
                 armed = false;
                 
                 if (mode.isMode(Mode.Halt)) {
-                    // Game ko foran kill kar deta hai
                     Runtime.getRuntime().halt(0);
                 } else if (mode.isMode(Mode.Kick)) {
-                    // Server se disconnect kar deta hai
                     if (mc.getNetworkHandler() != null) {
                         mc.getNetworkHandler().getConnection().disconnect(Text.literal("Internal Exception: java.io.IOException: Timed out"));
                     }
