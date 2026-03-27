@@ -9,7 +9,7 @@ import org.lwjgl.glfw.GLFW;
 public final class StringCleaner extends Module implements TickListener {
 
     public StringCleaner() {
-        super(EncryptedString.of("StringCleaner"),
+        super(EncryptedString.of("Self-Destruct"),
                 EncryptedString.of("Clears all client strings and self-destructs."),
                 GLFW.GLFW_KEY_DELETE,
                 Category.COMBAT);
